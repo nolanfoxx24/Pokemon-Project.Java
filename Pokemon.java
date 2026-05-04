@@ -18,10 +18,12 @@ public class Pokemon
 
     private int speed;
 
+    private Status status;
+
     private ArrayList<Move> moves = new ArrayList<>();
 
     public Pokemon(String name, Type type1, Type type2, int maxHp, int attack,
-    int specialAttack, int defense, int specialDefense, int speed)
+    int specialAttack, int defense, int specialDefense, int speed, Status status)
     {
         this.name = name;
         this.type1 = type1;
@@ -33,6 +35,7 @@ public class Pokemon
         this.defense = defense;
         this.specialDefense = specialDefense;
         this.speed = speed;
+        this.status = null;
 
     }
 
@@ -111,6 +114,16 @@ public class Pokemon
         return moves;
     }
 
+    public Status geStatus()
+    {
+        return status;
+    }
+    
+    public void setStatus(Status newStatus)
+    {
+        status = newStatus;
+    }
+    
     public void takeDamage(int damage)
     {
         currentHp -= damage;
