@@ -23,7 +23,7 @@ public class Pokemon
     private ArrayList<Move> moves = new ArrayList<>();
 
     public Pokemon(String name, Type type1, Type type2, int maxHp, int attack,
-    int specialAttack, int defense, int specialDefense, int speed, Status status)
+    int specialAttack, int defense, int specialDefense, int speed)
     {
         this.name = name;
         this.type1 = type1;
