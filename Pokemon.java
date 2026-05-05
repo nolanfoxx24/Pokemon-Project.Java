@@ -114,7 +114,7 @@ public class Pokemon
         return moves;
     }
 
-    public Status geStatus()
+    public Status getStatus()
     {
         return status;
     }
