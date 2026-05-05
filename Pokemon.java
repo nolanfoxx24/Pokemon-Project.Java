@@ -119,6 +119,17 @@ public class Pokemon
         return status;
     }
     
+    public boolean hasStatus()
+    {
+        if (getStatus() != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public void setStatus(Status newStatus)
     {
         status = newStatus;
