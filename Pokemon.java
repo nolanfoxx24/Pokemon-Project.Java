@@ -121,15 +121,9 @@ public class Pokemon
     
     public boolean hasStatus()
     {
-        if (getStatus() != null)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return getStatus() != null;
     }
+    
     public void setStatus(Status newStatus)
     {
         status = newStatus;
