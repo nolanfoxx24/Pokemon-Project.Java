@@ -66,4 +66,9 @@ public class Move
     {
         return statusChance;
     }
+
+    public boolean inflictsStatus()
+    {
+        return status != null;
+    }
 }
