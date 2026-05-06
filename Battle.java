@@ -22,20 +22,7 @@ public class Battle
         System.out.println(attackingMove.getName() + " deals " + (int) damage + " damage! " + defendingPokemon.getName() + " has " + defendingPokemon.getCurrentHp() + " HP remaining" );
     }
 
-    public Move getCpuMove(Pokemon cpuPokemon, Pokemon playerPokemon)
-    {
-        Move highestDamage = cpuPokemon.getMoves().get(0);
-
-        for (int i = 0; i < cpuPokemon.getMoves().size(); i++)
-        {
-            Move currentMove = cpuPokemon.getMoves().get(i);
-            if(highestDamage.getPower() * chart.getMultiplier(highestDamage.getType(), playerPokemon.getType1()) < currentMove.getPower())
-            {
-                highestDamage = currentMove;
-            }
-        }
-        return highestDamage;
-    }
+    
 
     public void executeTurn(Pokemon attackingPokemon, Pokemon defendingPokemon, Move attackingMove )
     {
