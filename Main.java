@@ -152,6 +152,9 @@ public class Main
             {
                 mainBattle.executeTurn(cpuPokemon, faster, cpu.selectMove());
             }
+            
+            mainBattle.applyEndOfTurnEffects(faster);
+            mainBattle.applyEndOfTurnEffects(slower);
         }
 
             System.out.println(" ------------- Battle Ended -------------");

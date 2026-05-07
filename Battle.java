@@ -22,7 +22,43 @@ public class Battle
         System.out.println(attackingMove.getName() + " deals " + (int) damage + " damage! " + defendingPokemon.getName() + " has " + defendingPokemon.getCurrentHp() + " HP remaining" );
     }
 
-    
+    public void applyEndOfTurnEffects(Pokemon p)
+    {
+        if(p.getStatus() == Status.BURNED)
+        {
+            double burnDmg = p.getMaxHp() * (1.0/16);
+            p.takeDamage((int) burnDmg);
+
+            System.out.println("------------------------------------------------------------------");
+            System.out.println(p.getName() + " was hurt by its burn!");
+            System.out.println("Damage: " + (int) burnDmg );
+            System.out.println("------------------------------------------------------------------");
+        }
+        else if(p.getStatus() == Status.POISONED)
+        {
+            double poisonDmg = p.getMaxHp() * (1.0/8);
+            p.takeDamage((int) poisonDmg);
+
+            System.out.println("------------------------------------------------------------------");
+            System.out.println(p.getName() + " was hurt by its poison!");
+            System.out.println("Damage: " + (int) poisonDmg );
+            System.out.println("------------------------------------------------------------------");
+        }
+    }
+
+    public void applyStatusFromMove(Move move, Pokemon defender)
+    {
+        if(move.inflictsStatus() && !defender.hasStatus())
+        {
+            Random random = new Random();
+            int roll = random.nextInt(100) + 1;
+
+            if(roll <= move.getStatusChance())
+            {
+                defender.setStatus(move.getStatus());
+            }
+        }
+    }
 
     public boolean canMove(Pokemon attacker)
     {
@@ -49,6 +85,12 @@ public class Battle
 
     public void executeTurn(Pokemon attackingPokemon, Pokemon defendingPokemon, Move attackingMove )
     {
+        if(!canMove(attackingPokemon))
+        {
+            System.out.println(attackingPokemon.getName() + " is unable to move!");
+            return;
+        }
+
         Random rand = new Random();
         int roll = rand.nextInt(100) + 1; // gives a number from 1 to 100
 
@@ -69,6 +111,11 @@ public class Battle
                 defStat = defendingPokemon.getSpecialDefense();
             }
 
+            if(attackingPokemon.getStatus() == Status.BURNED && attackingMove.getMoveCategory() == MoveCategory.PHYSICAL)
+            {
+                atkStat = (int) (atkStat * 0.5);
+            }
+
             // Damage calcuation
             double multiplier = chart.getMultiplier(attackingMove.getType(), defendingPokemon.getType1());
             if(defendingPokemon.getType2() != null)
@@ -79,6 +126,7 @@ public class Battle
             double damage = ((double) atkStat) / defStat * attackingMove.getPower() * multiplier;
             
             defendingPokemon.takeDamage((int) damage);
+            applyStatusFromMove(attackingMove, defendingPokemon);
             
             if(multiplier == 0.0)
             {
