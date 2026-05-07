@@ -24,6 +24,29 @@ public class Battle
 
     
 
+    public boolean canMove(Pokemon attacker)
+    {
+        if(!attacker.hasStatus())
+        {
+            return true;
+        }
+
+        if(attacker.getStatus() != Status.PARALYSIS)
+        {
+            return true;
+        }
+
+        Random random = new Random();
+        int roll = random.nextInt(100) + 1;
+
+        if(roll <= 25)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     public void executeTurn(Pokemon attackingPokemon, Pokemon defendingPokemon, Move attackingMove )
     {
         Random rand = new Random();
