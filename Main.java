@@ -80,7 +80,7 @@ public class Main
         int cpuSpDefLvl50 = Pokemon.calcStat(85, 50, false);
         int cpuSpeLvl50 = Pokemon.calcStat(102, 50, false);
 
-        Move iciclecrash = new Move("Icicle Crash", Type.ICE, 85, 90, MoveCategory.PHYSICAL);
+        Move iciclecrash = new Move("Icicle Trash", Type.ICE, 85, 90, MoveCategory.PHYSICAL);
         Move knockoff = new Move("Knock Off", Type.DARK, 65, 100, MoveCategory.PHYSICAL);
         Move iceShard = new Move("Ice Shard", Type.ICE, 40, 100, MoveCategory.PHYSICAL, Status.BURNED, 100);
 
